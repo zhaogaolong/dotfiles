@@ -425,7 +425,9 @@ set t_Co=256
 
 " view tab and space
 set list
-set listchars+=space:.
+set listchars+=space:·
+map·<C-h>·:set·listchars=space:· <CR>
+map·<C-j>·:set·listchars=space:\ <CR>
 
 " vim copy to chlipborad
 set clipboard=unnamedplus
