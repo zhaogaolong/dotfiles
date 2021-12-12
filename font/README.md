@@ -6,7 +6,7 @@ This font is based on mononoki font transformation, with `ligatures` enabled
 And based on the icon patch of [nerd-fonts](https://github.com/ryanoasis/nerd-fonts)
 
 images:
-![](images/ligatures.png)
+![](../images/ligatures.jpg)
 
 tools:
 
