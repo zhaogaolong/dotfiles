@@ -86,13 +86,6 @@ require('packer').startup(function()
       {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
     }
   }
-  -- use {
-  --   'nvim-telescope/telescope.nvim',
-  --   requires = {
-  --     {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'},
-  --   }
-  -- }
-
 
 end)
 
@@ -103,9 +96,6 @@ require("config-indent-blackline")
 require("config-gitsigns")
 require("config-telescope")
 require("config-lsp")
-
-
-
 
 -- nvim options config
 map('', '<Space>', '<Nop>', default_opts)
@@ -120,6 +110,7 @@ map('n', '<leader>fg', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]]
 map('n', '<leader>fb', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], default_opts)
 map('n', '<leader>fh', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], default_opts)
 map('n', '<leader>rg', [[<cmd>lua require('telescope.builtin').grep_string()<CR>]], default_opts)
+map('n', '<leader>gr', [[<cmd>lua require('telescope.builtin').lsp_references()<CR>]], default_opts)
 map('n', '<leader>co', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], default_opts)
 map('n', '<leader>/', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], default_opts)
 
