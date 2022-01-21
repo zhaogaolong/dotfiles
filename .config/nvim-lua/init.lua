@@ -3,11 +3,47 @@ local g = vim.g
 local opt = vim.opt
 local map = vim.api.nvim_set_keymap
 local default_opts = { noremap = true, silent = true }
+local fn = vim.fn
 
-local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+
+-- Automatically install packer
+local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+if fn.empty(fn.glob(install_path)) > 0 then
+  PACKER_BOOTSTRAP = fn.system {
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/wbthomason/packer.nvim",
+    install_path,
+  }
+  print "Installing packer close and reopen Neovim..."
+  vim.cmd [[packadd packer.nvim]]
 end
+
+-- Autocommand that reloads neovim whenever you save the plugins.lua file
+vim.cmd [[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost init.lua source <afile> | PackerSync
+  augroup end
+]]
+
+
+-- Use a protected call so we don't error out on first use
+local status_ok, packer = pcall(require, "packer")
+if not status_ok then
+  return
+end
+
+packer.init {
+  display = {
+    open_fn = function()
+      return require("packer.util").float { border = "rounded" }
+    end,
+  },
+}
+
 
 require('packer').startup(function()
   -- Packer can manage itself
@@ -75,6 +111,10 @@ require('packer').startup(function()
   
   -- color 
   use 'norcalli/nvim-colorizer.lua'
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+  }
 
   -- utils 
   use 'ctrlpvim/ctrlp.vim'
@@ -96,6 +136,8 @@ require("config-indent-blackline")
 require("config-gitsigns")
 require("config-telescope")
 require("config-lsp")
+-- require("config-treesister")
+
 
 -- nvim options config
 map('', '<Space>', '<Nop>', default_opts)
@@ -115,6 +157,7 @@ map('n', '<leader>co', [[<cmd>lua require('telescope.builtin').lsp_document_symb
 map('n', '<leader>/', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], default_opts)
 
 
+
 --options config 
 opt.swapfile = false
 opt.hidden = true
@@ -125,6 +168,10 @@ opt.encoding = 'UTF-8'
 opt.number = true
 opt.showmatch = true
 
+opt.expandtab = true
+opt.shiftwidth = 2
+opt.tabstop = 2
+
 opt.mouse = 'a'
 opt.termguicolors = true
 opt.listchars='tab:⇢ ,eol:¬,trail:·,extends:↷,precedes:↶'
@@ -132,6 +179,7 @@ opt.showbreak='↪'
 
 -- vim 选择数据块复制到粘贴板
 opt.clipboard = 'unnamedplus'
+
 
 -- global config 
 -- g.nobackup = true
@@ -155,3 +203,38 @@ require 'colorizer'.setup {
 cmd('hi DiffAdd guibg=#2D2D2D guifg=#57FF00 ctermbg=none')
 cmd('hi DiffChange guibg=#2D2D2D guifg=#FFEF02 ctermbg=none')
 cmd('hi DiffDelete guibg=#2D2D2D guifg=Red ctermbg=none')
+
+
+-- autocommand
+cmd [[
+  autocmd BufWritePre *.go,*.rs lua vim.lsp.buf.formatting_sync(nil, 1000)
+  autocmd FileType go,make setlocal shiftwidth=4 tabstop=4 noexpandtab
+]]
+
+
+
+-- let g:nvim_tree_icons = {
+--     \ 'default': '',
+--     \ 'symlink': '',
+--     \ 'git': {
+--     \   'unstaged': "✗",
+--     \   'staged': "✓",
+--     \   'unmerged': "",
+--     \   'renamed': "➜",
+--     \   'untracked': "★",
+--     \   'deleted': "",
+--     \   'ignored': "◌"
+--     \   },
+--     \ 'folder': {
+--     \   'arrow_open': "",
+--     \   'arrow_closed': "",
+--     \   'default': "",
+--     \   'open': "",
+--     \   'empty': "",
+--     \   'empty_open': "",
+--     \   'symlink': "",
+--     \   'symlink_open': "",
+--     \   }
+--     \ }
+
+
