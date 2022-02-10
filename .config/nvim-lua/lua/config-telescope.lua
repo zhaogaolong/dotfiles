@@ -10,15 +10,20 @@ telescope.setup{
   defaults = {
     -- Default configuration for telescope goes here:
     -- config_key = value,
+    -- layout_strategy = 'vertical',
+    -- layout_config = { height = 0.95 },
     mappings = { 
       i = {
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
-	["<C-c>"] = actions.close,
+	      ["<C-c>"] = actions.close,
       }
     }
   },
   pickers = {
+    find_files = {
+      theme = "dropdown",
+    }
   },
   extensions = {
     fzf = {

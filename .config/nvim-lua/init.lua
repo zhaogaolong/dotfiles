@@ -22,12 +22,12 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd [[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost init.lua source <afile> | PackerSync
-  augroup end
-]]
+-- vim.cmd [[
+--   augroup packer_user_config
+--     autocmd!
+--     autocmd BufWritePost init.lua source <afile> | PackerSync
+--   augroup end
+-- ]]
 
 
 -- Use a protected call so we don't error out on first use
@@ -146,8 +146,16 @@ g.maplocalleader = ' '
 
 map('n', '<leader>ee', ':NvimTreeToggle<CR>', default_opts)
 
+cmd [[
+  command! AF :Telescope find_files find_command=fd,--type,f,--hidden,--follow,--exclude,.git,--no-ignore, previewer=false
+  command! FF :Telescope find_files find_command=fd,--type,f,--hidden,--follow,--exclude,.git, previewer=false
 
-map('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files()<CR>]], default_opts)
+]]
+
+
+map('n', '<leader>af', ':AF<CR>', default_opts)
+map('n', '<leader>ff', ':FF<CR>', default_opts)
+-- map('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files()<CR>]], default_opts)
 map('n', '<leader>fg', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], default_opts)
 map('n', '<leader>fb', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], default_opts)
 map('n', '<leader>fh', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], default_opts)
@@ -180,13 +188,6 @@ opt.showbreak='↪'
 -- vim 选择数据块复制到粘贴板
 opt.clipboard = 'unnamedplus'
 
-
--- global config 
--- g.nobackup = true
--- g.noswapfile = true
--- g.noundofile = true
--- g.nocompatible = true
--- g.nowritebackup = true
 g.syntax = true
 g.ignorecase = true
 g.list = true
@@ -207,7 +208,7 @@ cmd('hi DiffDelete guibg=#2D2D2D guifg=Red ctermbg=none')
 
 -- autocommand
 cmd [[
-  autocmd BufWritePre *.go,*.rs lua vim.lsp.buf.formatting_sync(nil, 1000)
+  autocmd BufWritePre *.go,*.rs,*.vue lua vim.lsp.buf.formatting_sync(nil, 1000)
   autocmd FileType go,make setlocal shiftwidth=4 tabstop=4 noexpandtab
 ]]
 
