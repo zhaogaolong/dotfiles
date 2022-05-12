@@ -165,6 +165,8 @@ map('n', '<leader>co', [[<cmd>lua require('telescope.builtin').lsp_document_symb
 map('n', '<leader>/', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], default_opts)
 
 
+-- lsp restart
+map('n', '<leader>lr', ':LspRestart<CR>', default_opts)
 
 --options config 
 opt.swapfile = false
