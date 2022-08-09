@@ -212,6 +212,7 @@ cmd('hi DiffDelete guibg=#2D2D2D guifg=Red ctermbg=none')
 cmd [[
   autocmd BufWritePre *.go,*.rs,*.vue lua vim.lsp.buf.formatting_sync(nil, 1000)
   autocmd FileType go,make setlocal shiftwidth=4 tabstop=4 noexpandtab
+  autocmd FileType python setlocal colorcolumn=79
 ]]
 
 

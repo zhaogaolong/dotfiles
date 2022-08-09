@@ -84,7 +84,7 @@ cmp.setup.cmdline('/', {
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local servers = { 'gopls', 'rust_analyzer'}
+local servers = {'gopls', 'rust_analyzer', 'pyright'}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     capabilities = capabilities,
@@ -103,11 +103,4 @@ nvim_lsp.html.setup {
 nvim_lsp.vuels.setup{
   capabilities = capabilities,
 }
-
-
-
-
-
-
-
 
