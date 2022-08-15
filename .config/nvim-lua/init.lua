@@ -73,6 +73,7 @@ require('packer').startup(function()
     } 
   }
 
+  use 'simrat39/symbols-outline.nvim'
   -- lsp config
   use {
     'neovim/nvim-lspconfig',
@@ -136,6 +137,7 @@ require("config-indent-blackline")
 require("config-gitsigns")
 require("config-telescope")
 require("config-lsp")
+-- require'navigator'.setup()
 -- require("config-treesister")
 
 
@@ -145,11 +147,13 @@ g.mapleader = ' '
 g.maplocalleader = ' '
 
 map('n', '<leader>ee', ':NvimTreeToggle<CR>', default_opts)
+map('n', '<leader>tt', ':SymbolsOutline<CR>', default_opts)
+map('n', '<leader>,', ':tabnext<CR>', default_opts)
+map('n', '<leader>.', ':tabprevious<CR>', default_opts)
 
 cmd [[
   command! AF :Telescope find_files find_command=fd,--type,f,--hidden,--follow,--exclude,.git,--no-ignore, previewer=false
   command! FF :Telescope find_files find_command=fd,--type,f,--hidden,--follow,--exclude,.git, previewer=false
-
 ]]
 
 
@@ -167,6 +171,7 @@ map('n', '<leader>/', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]],
 
 -- lsp restart
 map('n', '<leader>lr', ':LspRestart<CR>', default_opts)
+
 
 --options config 
 opt.swapfile = false
