@@ -9,9 +9,12 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
     "https://github.com/wbthomason/packer.nvim",
     install_path,
   }
-  print "Installing packer close and reopen Neovim..."
-  vim.cmd [[packadd packer.nvim]]
+
+  -- https://github.com/wbthomason/packer.nvim/issues/750
+  table.insert(vim.opt.runtimepath, 1, vim.fn.stdpath('data') .. '/site/pack/*/start/*')
+
 end
+
 
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
@@ -27,7 +30,9 @@ packer.init {
   },
 }
 
-require('packer').startup(function()
+vim.cmd 'packadd packer.nvim'
+
+require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
@@ -99,7 +104,7 @@ require('packer').startup(function()
   -- theme
   use 'phanviet/vim-monokai-pro'
   use 'joshdick/onedark.vim'
-  use 'liuerfire/vim-code-dark'
+  use 'tomasiser/vim-code-dark'
   
   -- color 
   use {
@@ -129,6 +134,11 @@ require('packer').startup(function()
     config = function()  require("plugin.telescope") end,
   }
 
+  -- Automatically set up your configuration after cloning packer.nvim
+  -- Put this at the end after all plugins
+  if Packer_bootstrap then
+    require('packer').sync()
+  end
 end)
 
 require("keymaps")
