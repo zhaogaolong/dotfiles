@@ -22,18 +22,18 @@ vim.opt.termguicolors = true
 vim.opt.listchars='tab:⇢ ,eol:¬,trail:·,extends:↷,precedes:↶'
 vim.opt.showbreak='↪'
 
+
 -- vim 选择数据块复制到粘贴板
 vim.opt.clipboard = 'unnamedplus'
+
+vim.wo.foldlevel = 99
+vim.wo.foldenable = true
 
 vim.cmd('colorscheme codedark')
 
 vim.cmd('hi DiffAdd guibg=#2D2D2D guifg=#57FF00 ctermbg=none')
 vim.cmd('hi DiffChange guibg=#2D2D2D guifg=#FFEF02 ctermbg=none')
 vim.cmd('hi DiffDelete guibg=#2D2D2D guifg=Red ctermbg=none')
-
-vim.wo.foldlevel = 99
-vim.wo.foldenable = true
-
 
 -- autocommand
 --- cmd [[
@@ -71,3 +71,4 @@ vim.api.nvim_create_autocmd('FileType', {
     -- vim.opt_local.noexpandtab = false
   end,
 })
+

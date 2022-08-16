@@ -39,14 +39,25 @@ require'nvim-tree'.setup {
     timeout = 500,
   },
   view = {
-    width = 30,
-    height = 30,
-    hide_root_folder = false,
+    width = 40,
+    height = 40,
+    hide_root_folder = true,
     side = 'left',
     -- auto_resize = false,
     mappings = {
       custom_only = false,
       list = {}
+    },
+    float = {
+      enable = true,
+      open_win_config = {
+        relative = "editor",
+        border = "rounded",
+        width = 40,
+        height = 40,
+        row = 5,
+        col = 10,
+      },
     },
     number = false,
     relativenumber = false,

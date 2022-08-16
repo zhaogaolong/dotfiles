@@ -132,12 +132,8 @@ require("config-lsp")
 -- require'navigator'.setup()
 -- require("config-treesister")
 
-require("settings")
 require("keymaps")
-
-
--- cmd('colorscheme monokai_pro')
--- cmd('colorscheme codedark')
+require("settings")
 
 require 'colorizer'.setup {
   '*'; -- Highlight all files, but customize some others.
@@ -145,15 +141,4 @@ require 'colorizer'.setup {
   html = { names = false; } -- Disable parsing "names" like Blue or Gray
 }
 
--- cmd('hi DiffAdd guibg=#2D2D2D guifg=#57FF00 ctermbg=none')
--- cmd('hi DiffChange guibg=#2D2D2D guifg=#FFEF02 ctermbg=none')
--- cmd('hi DiffDelete guibg=#2D2D2D guifg=Red ctermbg=none')
-
-
--- autocommand
---- cmd [[
----   autocmd BufWritePre *.go,*.rs,*.vue lua vim.lsp.buf.formatting_sync(nil, 1000)
----   autocmd FileType go,make setlocal shiftwidth=4 tabstop=4 noexpandtab
----   autocmd FileType python setlocal colorcolumn=79
---- ]]
 
