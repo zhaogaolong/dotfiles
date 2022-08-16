@@ -1,11 +1,3 @@
--- cmd = vim.cmd
--- g = vim.g
--- opt = vim.opt
--- map = vim.api.nvim_set_keymap
--- default_opts = { noremap = true, silent = true }
--- fn = vim.fn
-
-
 -- Automatically install packer
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
@@ -21,7 +13,6 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.cmd [[packadd packer.nvim]]
 end
 
-
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
@@ -35,7 +26,6 @@ packer.init {
     end,
   },
 }
-
 
 require('packer').startup(function()
   -- Packer can manage itself
@@ -53,7 +43,7 @@ require('packer').startup(function()
     requires = {
       'kyazdani42/nvim-web-devicons', -- optional, for file icon
     },
-    -- config = function() require'nvim-tree'.setup {} end
+    config = function() require("plugin.nvim-tree") end,
   }
 
   use {
@@ -62,7 +52,8 @@ require('packer').startup(function()
       'kyazdani42/nvim-web-devicons',
       'arkav/lualine-lsp-progress',
       opt = true,
-    } 
+    },
+    config = function() require("plugin.lualine") end,
   }
 
   use 'simrat39/symbols-outline.nvim'
@@ -74,6 +65,7 @@ require('packer').startup(function()
       'folke/trouble.nvim',
       "ray-x/lsp_signature.nvim",
     },
+    config = function() require("plugin.lsp") end,
   }
   use {
     'hrsh7th/nvim-cmp',
@@ -94,7 +86,8 @@ require('packer').startup(function()
     requires = {
       'nvim-lua/plenary.nvim'
     },
-    tag = 'release' -- To use the latest release
+    tag = 'release', -- To use the latest release
+    config = function() require("plugin.gitsigns") end,
   }
 
   -- theme
@@ -103,7 +96,13 @@ require('packer').startup(function()
   use 'liuerfire/vim-code-dark'
   
   -- color 
-  use 'norcalli/nvim-colorizer.lua'
+  use {
+    'norcalli/nvim-colorizer.lua',
+    ft = {'css', 'html'},
+    config = function() require("plugin.colorizer") end,
+  }
+
+
   use {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
@@ -111,34 +110,22 @@ require('packer').startup(function()
 
   -- utils 
   use 'ctrlpvim/ctrlp.vim'
-  use 'lukas-reineke/indent-blankline.nvim'
+  use {
+    'lukas-reineke/indent-blankline.nvim',
+    config = function() require("plugin.indent-blackline") end,
+  }
+
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
       {'nvim-lua/plenary.nvim'},
       {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-    }
+    },
+    config = function()  require("plugin.telescope") end,
   }
 
 end)
 
--- plugin config
-require("config-lualine")
-require("config-nvim-tree")
-require("config-indent-blackline")
-require("config-gitsigns")
-require("config-telescope")
-require("config-lsp")
--- require'navigator'.setup()
--- require("config-treesister")
-
 require("keymaps")
 require("settings")
-
-require 'colorizer'.setup {
-  '*'; -- Highlight all files, but customize some others.
-  css = { rgb_fn = true; }; -- Enable parsing rgb(...) functions in css.
-  html = { names = false; } -- Disable parsing "names" like Blue or Gray
-}
-
 
