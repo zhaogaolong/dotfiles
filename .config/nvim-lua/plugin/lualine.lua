@@ -2,7 +2,9 @@ require'lualine'.setup {
   options = {
     icons_enabled = true,
     theme = 'dracula',
-    --- theme = 'evil_lualine',
+    -- theme = 'bubbles_theme',
+    -- theme = 'evil_lualine',
+
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
     disabled_filetypes = {},

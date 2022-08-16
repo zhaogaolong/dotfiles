@@ -55,6 +55,12 @@ require('packer').startup(function()
     },
     config = function() require("plugin.lualine") end,
   }
+  use {
+    'akinsho/bufferline.nvim',
+    tag = "v2.*",
+    requires = 'kyazdani42/nvim-web-devicons',
+    config = function() require("bufferline").setup{} end,
+  }
 
   use 'simrat39/symbols-outline.nvim'
   -- lsp config
@@ -99,9 +105,8 @@ require('packer').startup(function()
   use {
     'norcalli/nvim-colorizer.lua',
     ft = {'css', 'html'},
-    config = function() require("plugin.colorizer") end,
+    config = function() require('plugin.colorizer') end,
   }
-
 
   use {
     "nvim-treesitter/nvim-treesitter",
