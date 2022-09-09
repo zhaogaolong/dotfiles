@@ -13,7 +13,7 @@ require'lualine'.setup {
   sections = {
     lualine_a = {
       {
-        'mode',
+        -- 'mode',
         icons_enabled = true,
       }
     },

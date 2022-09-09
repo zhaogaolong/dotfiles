@@ -1,5 +1,6 @@
 vim.g.syntax = true
 vim.g.ignorecase = true
+vim.g.symbols_outline = {...}
 vim.g.list = true
 
 --options config 
@@ -53,7 +54,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 })
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'python',
+  pattern = '*.py',
   callback = function()
     vim.opt_local.colorcolumn = 79
     vim.opt_local.shiftwidth = 4

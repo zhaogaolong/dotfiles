@@ -32,6 +32,8 @@ packer.init {
 
 vim.cmd 'packadd packer.nvim'
 
+vim.g.symbols_outline = {...}
+
 require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
@@ -67,7 +69,12 @@ require('packer').startup(function(use)
     config = function() require("bufferline").setup{} end,
   }
 
-  use 'simrat39/symbols-outline.nvim'
+  use {
+    'simrat39/symbols-outline.nvim',
+    config = function()
+      require("symbols-outline").setup()
+    end,
+  }
   -- lsp config
   use {
     'neovim/nvim-lspconfig',
