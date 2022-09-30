@@ -62,6 +62,12 @@ require('packer').startup(function(use)
     },
     config = function() require("plugin.lualine") end,
   }
+
+  -- 竖线
+  use {
+    'lukas-reineke/virt-column.nvim',
+    config = function() require("virt-column").setup() end,
+  }
   use {
     'akinsho/bufferline.nvim',
     tag = "v2.*",
@@ -69,10 +75,20 @@ require('packer').startup(function(use)
     config = function() require("bufferline").setup{} end,
   }
 
+  -- tag bar
   use {
     'simrat39/symbols-outline.nvim',
     config = function()
-      require("symbols-outline").setup()
+      require("symbols-outline").setup{
+        auto_close = true,
+        show_numbers = true,
+        lsp_blacklist = {
+          'Variable',
+        },
+        symbol_blacklist = {
+          'Variable',
+        },
+      }
     end,
   }
   -- lsp config
