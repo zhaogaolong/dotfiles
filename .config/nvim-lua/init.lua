@@ -45,6 +45,7 @@ require('packer').startup(function(use)
     ft = {'go'},
   } 
   
+  -- down status
   use {
     'kyazdani42/nvim-tree.lua',
     requires = {
@@ -68,11 +69,21 @@ require('packer').startup(function(use)
     'lukas-reineke/virt-column.nvim',
     config = function() require("virt-column").setup() end,
   }
+
+  -- top table
   use {
     'akinsho/bufferline.nvim',
     tag = "v2.*",
     requires = 'kyazdani42/nvim-web-devicons',
-    config = function() require("bufferline").setup{} end,
+    config = function()
+      require("bufferline").setup{
+        options = {
+          separator_style = 'slant', -- slant, padded_slant, thick
+          numbers = 'ordinal',
+
+        }
+      }
+    end,
   }
 
   -- tag bar
@@ -115,6 +126,7 @@ require('packer').startup(function(use)
 
   -- git
   use  'tpope/vim-fugitive' -- git command
+  use  'tpope/vim-surround' -- work change
   use {
     'lewis6991/gitsigns.nvim',
     requires = {
@@ -128,6 +140,7 @@ require('packer').startup(function(use)
   use 'phanviet/vim-monokai-pro'
   use 'joshdick/onedark.vim'
   use 'tomasiser/vim-code-dark'
+  use 'Mofiqul/dracula.nvim'
   
   -- color 
   use {

@@ -7,7 +7,7 @@ vim.g.list = true
 vim.opt.termguicolors = true
 vim.opt.swapfile = false
 vim.opt.hidden = true
-vim.opt.cmdheight = 1
+vim.opt.cmdheight = 0
 vim.opt.updatetime = 300
 vim.opt.encoding = 'UTF-8'
 
@@ -54,7 +54,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 })
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = '*.py',
+  pattern = 'py',
   callback = function()
     vim.opt_local.colorcolumn = 79
     vim.opt_local.shiftwidth = 4
