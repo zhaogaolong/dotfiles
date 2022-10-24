@@ -13,11 +13,12 @@ require'lualine'.setup {
   sections = {
     lualine_a = {
       {
-        -- 'mode',
+        'mode',
         icons_enabled = true,
       }
     },
-    lualine_b = {'branch', 'diff', 'diagnostics'},
+    -- lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_b = {'diff', 'diagnostics'},
     lualine_c = {
       {
       'filename',
@@ -55,14 +56,14 @@ require'lualine'.setup {
         color = { fg = '#fffffff', gui = 'bold' },
       },
       'encoding',
-      {
-        'fileformat',
-        symbols = {
-          unix = '', -- e712
-          dos = '', -- e70f
-          mac = '', -- e711
-        }
-      },
+      -- {
+      --   'fileformat',
+      --   symbols = {
+      --     unix = '', -- e712
+      --     dos = '', -- e70f
+      --     mac = '', -- e711
+      --   }
+      -- },
       {
         'filetype',
          colored = true,
@@ -70,7 +71,8 @@ require'lualine'.setup {
       }
     },
     lualine_y = {'progress'},
-    lualine_z = {'location'}
+    -- lualine_z = {'location'}
+    lualine_z = {}
   },
   inactive_sections = {
     lualine_a = {},

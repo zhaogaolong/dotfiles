@@ -30,7 +30,8 @@ vim.opt.clipboard = 'unnamedplus'
 vim.wo.foldlevel = 99
 vim.wo.foldenable = true
 
-vim.cmd('colorscheme codedark')
+-- vim.cmd('colorscheme codedark')
+vim.cmd('colorscheme dracula')
 
 vim.cmd('hi DiffAdd guibg=#2D2D2D guifg=#57FF00 ctermbg=none')
 vim.cmd('hi DiffChange guibg=#2D2D2D guifg=#FFEF02 ctermbg=none')
@@ -49,7 +50,7 @@ vim.cmd('hi DiffDelete guibg=#2D2D2D guifg=Red ctermbg=none')
 vim.api.nvim_create_autocmd('BufWritePost', {
   pattern = '*.go,*.rs,*.vue',
   callback = function()
-    vim.lsp.buf.formatting_sync(nil, 1000)
+    vim.lsp.buf.format(nil, 1000)
   end,
 })
 
