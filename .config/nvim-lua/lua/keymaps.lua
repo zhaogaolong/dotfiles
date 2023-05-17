@@ -9,6 +9,7 @@ vim.keymap.set('n', '<leader>ee', ':NvimTreeToggle<CR>')
 vim.keymap.set('n', '<leader>tt', ':SymbolsOutline<CR>')
 vim.keymap.set('n', '<leader>,', ':tabnext<CR>')
 vim.keymap.set('n', '<leader>.', ':tabprevious<CR>')
+vim.keymap.set("n", "<leader>fml", "<cmd>CellularAutomaton make_it_rain<CR>")
 
 vim.cmd [[
   command! AF :Telescope find_files find_command=fd,--type,f,--hidden,--follow,--exclude,.git,--no-ignore, previewer=false
@@ -28,5 +29,6 @@ vim.keymap.set('n', '<leader>rg', require('telescope.builtin').grep_string)
 vim.keymap.set('n', '<leader>gr', require('telescope.builtin').lsp_references)
 vim.keymap.set('n', '<leader>co', require('telescope.builtin').lsp_document_symbols)
 vim.keymap.set('n', '<leader>/', require('telescope.builtin').live_grep)
+
 -- .setlsp restart
 vim.keymap.set('n', '<leader>lr', ':LspRestart<cr>')

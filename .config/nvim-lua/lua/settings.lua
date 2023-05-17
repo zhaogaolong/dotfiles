@@ -55,9 +55,9 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 })
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'py',
+  pattern = 'python',
   callback = function()
-    vim.opt_local.colorcolumn = 79
+    vim.opt_local.colorcolumn = "79"
     vim.opt_local.shiftwidth = 4
     vim.opt_local.tabstop = 4
     -- vim.opt_local.noexpandtab = true

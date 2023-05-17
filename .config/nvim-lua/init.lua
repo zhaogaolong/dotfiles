@@ -93,6 +93,7 @@ require('packer').startup(function(use)
       require("symbols-outline").setup{
         auto_close = true,
         show_numbers = true,
+        position = 'left',
         lsp_blacklist = {
           'Variable',
         },
@@ -122,6 +123,10 @@ require('packer').startup(function(use)
       'hrsh7th/vim-vsnip',
       'rafamadriz/friendly-snippets',
     },
+  }
+  use {
+    "ray-x/lsp_signature.nvim",
+    config = function() require "lsp_signature".setup({}) end,
   }
 
   -- git
@@ -168,6 +173,12 @@ require('packer').startup(function(use)
       {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
     },
     config = function()  require("plugin.telescope") end,
+  }
+
+  -- toys
+  use {
+    'eandrju/cellular-automaton.nvim',
+    config = function()  require("plugin.cellular-automaton") end,
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
